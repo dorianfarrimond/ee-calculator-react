@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import calculator from '../../services/calculator';
 
 const MODES = {
 	VALUE: 'VALUE',
@@ -12,20 +13,23 @@ const Calculator = () => {
 	const [operator, setOperator] = useState(null);
 
 	const handleChange = (newValue) => {
+		const parsedValue = parseInt(newValue, 10);
 		if (mode === MODES.VALUE) {
-			setValue(newValue);
+			setValue(parsedValue);
 		} else {
-			setOperand(newValue);
+			setOperand(parsedValue);
 		}
 	}
 
 	const handleOperator = op => {
+		setOperand(value);
 		setOperator(op);
 		setMode(MODES.OPERAND)
 	}
 
 	const handleEquals = () => {
-
+		setValue(calculator(value, operator, operand));
+		setMode(MODES.VALUE);
 	}
 
 	return (
