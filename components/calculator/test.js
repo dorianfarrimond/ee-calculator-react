@@ -82,6 +82,16 @@ describe('<Calculator/>', () => {
 			expect(screen.getByRole('textbox').value).toBe('3');
 		});
 
+		it('should support floating point', () => {
+			render(<Calculator />);
+
+			const keyboard = screen.getByRole('group')
+			fireEvent.click(within(keyboard).getByText('3'));
+			fireEvent.click(within(keyboard).getByText('.'));
+			fireEvent.click(within(keyboard).getByText('3'));
+			expect(screen.getByRole('textbox').value).toBe('3.3');
+		});
+
 		it('should default the operand to the current value for convenience', () => {
 			render(<Calculator />);
 
