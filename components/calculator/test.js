@@ -119,5 +119,19 @@ describe('<Calculator/>', () => {
 			fireEvent.click(screen.getByText('='));
 			expect(screen.getByRole('textbox').value).toBe('125');
 		});
+
+		it('should support compound operations', () => {
+			render(<Calculator />);
+
+			fireEvent.change(screen.getByRole('textbox'), {target: { value: '1'}});
+			fireEvent.click(screen.getByText('+'));
+			fireEvent.change(screen.getByRole('textbox'), {target: { value: '2'}});
+			fireEvent.click(screen.getByText('+'));
+			expect(screen.getByRole('textbox').value).toBe('3');
+
+			fireEvent.change(screen.getByRole('textbox'), {target: { value: '4'}});
+			fireEvent.click(screen.getByText('='));
+			expect(screen.getByRole('textbox').value).toBe('10');
+		});
 	});
 });
