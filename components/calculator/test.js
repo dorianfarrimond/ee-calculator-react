@@ -140,13 +140,15 @@ describe('<Calculator/>', () => {
 		it('should support compound operations', () => {
 			render(<Calculator />);
 
-			fireEvent.change(screen.getByRole('textbox'), {target: { value: '1'}});
+			const keyboard = screen.getByRole('group');
+			fireEvent.click(within(keyboard).getByText('1'));
 			fireEvent.click(screen.getByText('+'));
-			fireEvent.change(screen.getByRole('textbox'), {target: { value: '2'}});
+			fireEvent.click(within(keyboard).getByText('2'));
 			fireEvent.click(screen.getByText('+'));
 			expect(screen.getByRole('textbox').value).toBe('3');
 
-			fireEvent.change(screen.getByRole('textbox'), {target: { value: '4'}});
+			fireEvent.click(screen.getByText('+'));
+			fireEvent.click(within(keyboard).getByText('4'));
 			fireEvent.click(screen.getByText('='));
 			expect(screen.getByRole('textbox').value).toBe('10');
 		});

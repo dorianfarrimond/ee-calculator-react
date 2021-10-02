@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import calculator from '../../services/calculator';
 
@@ -100,9 +100,17 @@ const Calculator = () => {
 	}
 
 	const handleOperator = op => {
-		setOperand(value);
-		setOperator(op);
 		setTypingMode(TYPINGMODES.INSERT);
+
+		if (operator) {
+			const total = calculator(value, operator, operand);
+			setValue(total);
+			setOperand(total);
+		} else {
+			setOperand(value);
+		}
+
+		setOperator(op);
 		setMode(EDITMODES.OPERAND);
 	}
 
