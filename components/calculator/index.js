@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import calculator from '../../services/calculator';
 
@@ -147,7 +147,6 @@ const Calculator = () => {
 				<input
 					type="text"
 					value={mode === EDITMODES.VALUE ? value : operand}
-					// onChange={({target: { value }}) => handleChange(value)}
 					readOnly
 				/>
 			</DisplayWindow>
@@ -176,9 +175,7 @@ const Calculator = () => {
 				<Button onClick={() => handleDigit('0')}>0</Button>
 				<Button onClick={handleDecimalPoint}>.</Button>
 				<EqualsButton onClick={handleEquals}>=</EqualsButton>
-
 			</Keyboard>
-
 		</Container>
 	);
 }
