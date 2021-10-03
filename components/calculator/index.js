@@ -103,8 +103,6 @@ const Calculator = () => {
 
 	const handleDecimalPoint = () => {
 		const currentValue = mode === EDITMODES.VALUE ? value : operand;
-		console.log(currentValue);
-		console.log('as number', parseInt(currentValue, 10))
 		if (parseInt(currentValue, 10) < 1 || currentValue.includes('.')) {
 			return;
 		}
